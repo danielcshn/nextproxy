@@ -14,7 +14,15 @@ Public Class Form1
 
     Private Sub btnApply_Click(sender As Object, e As EventArgs) Handles btnApply.Click
         Dim proxy As String = txtIP.Text
-        lbIPProxy.Text = txtIP.Text
+
+        Dim matches As MatchCollection = Regex.Matches(proxy, "\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}")
+        For Each m As Match In matches ' Loop over matches.
+            For Each c As Capture In m.Captures ' Loop over captures.
+                lbIPProxy.Text = c.Value
+                ProxyDataGeoCountry(c.Value)
+            Next
+        Next
+
         If My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings", "ProxyServer", Nothing) Is Nothing Then
             My.Computer.Registry.CurrentUser.CreateSubKey("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings")
             My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings", "ProxyServer", proxy)
@@ -35,8 +43,6 @@ Public Class Form1
     End Sub
 
     Private Function ValueDataGeoCountry()
-        ' http://api.wipmania.com/192.232.69.132?k=test&t=json&v=USD
-        'Dim URLTOGEO As String = "http://api.wipmania.com/" + lbIPPublic.Text
         Dim URLTOGEO As String = "http://ipapi.co/json"
         Try
             Dim UpdateClient As HttpWebRequest = WebRequest.Create(
@@ -48,36 +54,38 @@ Public Class Form1
             Dim textjson As String = readstream.ReadToEnd
             readstream.Close()
             content.Close()
-
             Dim json As JObject = JObject.Parse(textjson)
-            'MsgBox(json.SelectToken("country"))
-
             lbIPPublic.Text = json.SelectToken("ip")
             Dim Code As String = json.SelectToken("country")
             lbCountry.Text = json.SelectToken("country_name")
             pbCountry.Image = Image.FromFile("flag\" + LCase(Code) + ".png")
-
             Return Nothing
         Catch
             Return Nothing
         End Try
     End Function
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub lbCountry_Click(sender As Object, e As EventArgs) Handles lbCountry.Click
-
-    End Sub
-
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Timer2_Tick(sender As Object, e As EventArgs)
-
-    End Sub
+    Private Function ProxyDataGeoCountry(ipproxy As String)
+        Dim URLTOGEO As String = "http://ipapi.co/" + ipproxy + "/json"
+        Try
+            Dim UpdateClient As HttpWebRequest = WebRequest.Create(
+            New Uri(URLTOGEO))
+            UpdateClient.Timeout = 2500
+            Dim response As WebResponse = UpdateClient.GetResponse()
+            Dim content As Stream = response.GetResponseStream()
+            Dim readstream As New StreamReader(content, Encoding.Default)
+            Dim textjson As String = readstream.ReadToEnd
+            readstream.Close()
+            content.Close()
+            Dim json As JObject = JObject.Parse(textjson)
+            Dim Code As String = json.SelectToken("country")
+            lbCountryProxy.Text = json.SelectToken("country_name")
+            pxCountry.Image = Image.FromFile("flag\" + LCase(Code) + ".png")
+            Return Nothing
+        Catch
+            Return Nothing
+        End Try
+    End Function
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Form2.Show()
