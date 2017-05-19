@@ -29,6 +29,10 @@ Partial Class Form1
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.lbIPPublic = New System.Windows.Forms.Label()
+        Me.lbCountry = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -65,7 +69,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.txtPort)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.txtIP)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox1.Location = New System.Drawing.Point(340, 216)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(154, 92)
         Me.GroupBox1.TabIndex = 3
@@ -99,11 +103,50 @@ Partial Class Form1
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "IP Address:"
         '
+        'lbIPPublic
+        '
+        Me.lbIPPublic.AutoSize = True
+        Me.lbIPPublic.Location = New System.Drawing.Point(56, 33)
+        Me.lbIPPublic.Name = "lbIPPublic"
+        Me.lbIPPublic.Size = New System.Drawing.Size(52, 13)
+        Me.lbIPPublic.TabIndex = 4
+        Me.lbIPPublic.Text = "127.0.0.1"
+        '
+        'lbCountry
+        '
+        Me.lbCountry.AutoSize = True
+        Me.lbCountry.Location = New System.Drawing.Point(56, 60)
+        Me.lbCountry.Name = "lbCountry"
+        Me.lbCountry.Size = New System.Drawing.Size(22, 13)
+        Me.lbCountry.TabIndex = 5
+        Me.lbCountry.Text = "UK"
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(119, 244)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 6
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Location = New System.Drawing.Point(405, 33)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(238, 147)
+        Me.ListBox1.TabIndex = 7
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(182, 122)
+        Me.ClientSize = New System.Drawing.Size(722, 406)
+        Me.Controls.Add(Me.ListBox1)
+        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.lbCountry)
+        Me.Controls.Add(Me.lbIPPublic)
         Me.Controls.Add(Me.GroupBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "Form1"
@@ -112,6 +155,7 @@ Partial Class Form1
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -122,4 +166,8 @@ Partial Class Form1
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents lbIPPublic As Label
+    Friend WithEvents lbCountry As Label
+    Friend WithEvents Button2 As Button
+    Friend WithEvents ListBox1 As ListBox
 End Class
