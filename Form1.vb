@@ -110,7 +110,9 @@ Public Class Form1
             Notify.Visible = True
             'Notify.Icon = SystemIcons.Application
             Notify.BalloonTipIcon = ToolTipIcon.Info
+            Notify.BalloonTipTitle = "NextProxy"
             Notify.BalloonTipText = "Verificador corriendo"
+            Notify.ShowBalloonTip(10000)
             'Me.Hide()
             ShowInTaskbar = False
         End If

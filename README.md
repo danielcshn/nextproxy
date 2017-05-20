@@ -15,7 +15,9 @@
 **v1.0.0.4** May 20, 2017
 - Add Windows Notification.
 - Add Connection Status.
-- Add Proxy List: Free-Proxy-List.net & Spys.ru & GatherProxy.com & HTTPtubbel.ge & ProxyServers.pro & ProxyNova.com & Premproxy.com
+- Add Proxy List: Free-Proxy-List.net & Spys.ru 
+- Add Proxy List: GatherProxy.com & HTTPtubbel.ge
+- Add Proxy List: ProxyServers.pro & ProxyNova.com & Premproxy.com
 - Add ProgressBar & Counter ProxyList Capture.
 
 **v1.0.0.3** May 19, 2017
@@ -37,5 +39,5 @@
 
 ## License
 
-Instagram Bots for Python is [GPL-3.0](https://github.com/KRIPT4/Instagram-Bots-for-Python/blob/master/LICENSE) Licensed  
+NextProxy for VB.NET is [MIT](https://github.com/KRIPT4/NextProxy-VB.NET/blob/master/LICENSE) Licensed  
 Copyright © 2017 KRIPT4 (https://github.com/KRIPT4)

@@ -208,6 +208,7 @@ Partial Class Form1
         'Notify
         '
         Me.Notify.Icon = CType(resources.GetObject("Notify.Icon"), System.Drawing.Icon)
+        Me.Notify.Text = "NextProxy"
         Me.Notify.Visible = True
         '
         'Form1
