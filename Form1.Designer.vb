@@ -40,6 +40,7 @@ Partial Class Form1
         Me.lbIPProxy = New System.Windows.Forms.Label()
         Me.lbCountryProxy = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Notify = New System.Windows.Forms.NotifyIcon(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbCountry, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pxCountry, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -197,12 +198,17 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(218, 289)
+        Me.Button1.Location = New System.Drawing.Point(218, 290)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(97, 41)
         Me.Button1.TabIndex = 16
         Me.Button1.Text = "Proxy List"
         Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Notify
+        '
+        Me.Notify.Icon = CType(resources.GetObject("Notify.Icon"), System.Drawing.Icon)
+        Me.Notify.Visible = True
         '
         'Form1
         '
@@ -254,4 +260,5 @@ Partial Class Form1
     Friend WithEvents lbIPProxy As Label
     Friend WithEvents lbCountryProxy As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents Notify As NotifyIcon
 End Class

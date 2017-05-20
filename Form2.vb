@@ -1,11 +1,4 @@
-﻿Imports System.Threading
-Imports System.IO
-Imports System.Net
-Imports System.Text
-Imports System.Text.RegularExpressions
-Imports Microsoft.Win32
-Imports Newtonsoft.Json
-Imports Newtonsoft.Json.Linq
+﻿Imports System.Text.RegularExpressions
 
 Public Class Form2
 
@@ -16,14 +9,58 @@ Public Class Form2
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        cbHideMyAss.ForeColor = Color.Black
+        cbHideMyName.ForeColor = Color.Black
+        cbNNTIME.ForeColor = Color.Black
+        cbPremProxy.ForeColor = Color.Black
+        cbFreeProxyList2.ForeColor = Color.Black
+        cbSpysru.ForeColor = Color.Black
+        cbGatherProxy.ForeColor = Color.Black
+        cbHTTPtunnel.ForeColor = Color.Black
+        cbProxyNova.ForeColor = Color.Black
+
+        Me.Cursor = Cursors.AppStarting
+        Progress.Maximum = 0
+        ' ProgressBar Total
+        If cbHideMyAss.Checked = True Then
+            Progress.Maximum = Progress.Maximum + 10
+        End If
+        If cbHideMyName.Checked = True Then
+            Progress.Maximum = Progress.Maximum + 10
+        End If
+        If cbNNTIME.Checked = True Then
+            Progress.Maximum = Progress.Maximum + 10
+        End If
+        If cbPremProxy.Checked = True Then
+            Progress.Maximum = Progress.Maximum + 10
+        End If
+        If cbFreeProxyList2.Checked = True Then
+            Progress.Maximum = Progress.Maximum + 10
+        End If
+        If cbSpysru.Checked = True Then
+            Progress.Maximum = Progress.Maximum + 10
+        End If
+        If cbGatherProxy.Checked = True Then
+            Progress.Maximum = Progress.Maximum + 10
+        End If
+        If cbHTTPtunnel.Checked = True Then
+            Progress.Maximum = Progress.Maximum + 10
+        End If
+        If cbProxyNova.Checked = True Then
+            Progress.Maximum = Progress.Maximum + 10
+        End If
+
+        Button1.Enabled = False
+        lbCountProxys.Text = "0"
+        Progress.Value = 0
         If cbHideMyAss.Checked = True Then
             WebBrowser1.Navigate("http://proxylist.hidemyass.com/")
-
             WaitForPageLoad()
 
             WebBrowser1.Document.ExecCommand("SelectAll", True, vbNull)
             WebBrowser1.Document.ExecCommand("Copy", False, vbNull)
-            Dim sourceCode As String = Clipboard.GetText
+            Dim sourceCode As String = ""
+            sourceCode = Clipboard.GetText
             sourceCode = sourceCode.Replace$(vbCrLf, "").Replace$(" ", ":").Replace$("::::", ":").Replace$(":::", ":")
             Dim matches As MatchCollection = Regex.Matches(sourceCode, "\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}:\d{1,5}")
             For Each m As Match In matches ' Loop over matches.
@@ -32,15 +69,18 @@ Public Class Form2
                 Next
             Next
             Clipboard.Clear()
+            cbHideMyAss.ForeColor = Color.Green
+            Progress.Value = Progress.Value + 10
+            lbCountProxys.Text = ListView1.Items.Count
         End If
         If cbHideMyName.Checked = True Then
             WebBrowser1.Navigate("https://hidemy.name/es/proxy-list/")
-
             WaitForPageLoad()
 
             WebBrowser1.Document.ExecCommand("SelectAll", True, vbNull)
             WebBrowser1.Document.ExecCommand("Copy", False, vbNull)
-            Dim sourceCode As String = Clipboard.GetText
+            Dim sourceCode As String = ""
+            sourceCode = Clipboard.GetText
             sourceCode = sourceCode.Replace$(vbCrLf, "").Replace$(" ", ":")
             Dim matches As MatchCollection = Regex.Matches(sourceCode, "\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}:\d{1,5}")
             For Each m As Match In matches ' Loop over matches.
@@ -49,15 +89,18 @@ Public Class Form2
                 Next
             Next
             Clipboard.Clear()
+            cbHideMyName.ForeColor = Color.Green
+            Progress.Value = Progress.Value + 10
+            lbCountProxys.Text = ListView1.Items.Count
         End If
         If cbNNTIME.Checked = True Then
             WebBrowser1.Navigate("http://nntime.com/")
-
             WaitForPageLoad()
 
             WebBrowser1.Document.ExecCommand("SelectAll", True, vbNull)
             WebBrowser1.Document.ExecCommand("Copy", False, vbNull)
-            Dim sourceCode As String = Clipboard.GetText
+            Dim sourceCode As String = ""
+            sourceCode = Clipboard.GetText
             sourceCode = sourceCode.Replace$(vbCrLf, "").Replace$(" ", ":").Replace$("1:2:3:4:5", "").Replace$("6:7:8:9:10", "").Replace$("11:12:13:14:15", "")
             Dim matches As MatchCollection = Regex.Matches(sourceCode, "\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}:\d{1,5}")
             For Each m As Match In matches ' Loop over matches.
@@ -66,7 +109,134 @@ Public Class Form2
                 Next
             Next
             Clipboard.Clear()
+            cbNNTIME.ForeColor = Color.Green
+            Progress.Value = Progress.Value + 10
+            lbCountProxys.Text = ListView1.Items.Count
         End If
+        If cbFreeProxyList2.Checked = True Then
+            WebBrowser1.Navigate("https://free-proxy-list.net/")
+            WaitForPageLoad()
+
+            WebBrowser1.Document.ExecCommand("SelectAll", True, vbNull)
+            WebBrowser1.Document.ExecCommand("Copy", False, vbNull)
+            Dim sourceCode As String = ""
+            sourceCode = Clipboard.GetText
+            sourceCode = sourceCode.Replace$(vbCrLf, "").Replace$(" ", ":")
+            Dim matches As MatchCollection = Regex.Matches(sourceCode, "\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}:\d{1,5}")
+            For Each m As Match In matches ' Loop over matches.
+                For Each c As Capture In m.Captures ' Loop over captures.
+                    ListView1.Items.Add(c.Value)
+                Next
+            Next
+            Clipboard.Clear()
+            cbFreeProxyList2.ForeColor = Color.Green
+            Progress.Value = Progress.Value + 10
+            lbCountProxys.Text = ListView1.Items.Count
+        End If
+        If cbSpysru.Checked = True Then
+            WebBrowser1.Navigate("http://spys.ru/en/anonymous-proxy-list/")
+            WaitForPageLoad()
+
+            WebBrowser1.Document.ExecCommand("SelectAll", True, vbNull)
+            WebBrowser1.Document.ExecCommand("Copy", False, vbNull)
+            Dim sourceCode As String = ""
+            sourceCode = Clipboard.GetText
+            sourceCode = sourceCode.Replace$(vbCrLf, "").Replace$(" ", "-")
+            Dim matches As MatchCollection = Regex.Matches(sourceCode, "\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}:\d{1,5}")
+            For Each m As Match In matches ' Loop over matches.
+                For Each c As Capture In m.Captures ' Loop over captures.
+                    ListView1.Items.Add(c.Value)
+                Next
+            Next
+            Clipboard.Clear()
+            cbSpysru.ForeColor = Color.Green
+            Progress.Value = Progress.Value + 10
+            lbCountProxys.Text = ListView1.Items.Count
+        End If
+        If cbGatherProxy.Checked = True Then
+            WebBrowser1.Navigate("http://www.gatherproxy.com/")
+            WaitForPageLoad()
+
+            WebBrowser1.Document.ExecCommand("SelectAll", True, vbNull)
+            WebBrowser1.Document.ExecCommand("Copy", False, vbNull)
+            Dim sourceCode As String = ""
+            sourceCode = Clipboard.GetText
+            sourceCode = sourceCode.Replace$(vbCrLf, "").Replace$(" ", ":").Replace$("/", "&&&&")
+            Dim matches As MatchCollection = Regex.Matches(sourceCode, "\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}:\d{1,5}")
+            For Each m As Match In matches ' Loop over matches.
+                For Each c As Capture In m.Captures ' Loop over captures.
+                    ListView1.Items.Add(c.Value)
+                Next
+            Next
+            Clipboard.Clear()
+            cbGatherProxy.ForeColor = Color.Green
+            Progress.Value = Progress.Value + 10
+            lbCountProxys.Text = ListView1.Items.Count
+        End If
+        If cbProxyNova.Checked = True Then
+            WebBrowser1.Navigate("https://www.proxynova.com/proxy-server-list/elite-proxies/")
+            WaitForPageLoad()
+
+            WebBrowser1.Document.ExecCommand("SelectAll", True, vbNull)
+            WebBrowser1.Document.ExecCommand("Copy", False, vbNull)
+            Dim sourceCode As String = ""
+            sourceCode = Clipboard.GetText
+            sourceCode = sourceCode.Replace$(vbCrLf, "").Replace$(" ", ":")
+            Dim matches As MatchCollection = Regex.Matches(sourceCode, "\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}:\d{1,5}")
+            For Each m As Match In matches ' Loop over matches.
+                For Each c As Capture In m.Captures ' Loop over captures.
+                    ListView1.Items.Add(c.Value)
+                Next
+            Next
+            Clipboard.Clear()
+            cbProxyNova.ForeColor = Color.Green
+            Progress.Value = Progress.Value + 10
+            lbCountProxys.Text = ListView1.Items.Count
+        End If
+        If cbHTTPtunnel.Checked = True Then
+            WebBrowser1.Navigate("http://www.httptunnel.ge/ProxyListForFree.aspx")
+            WaitForPageLoad()
+
+            WebBrowser1.Document.ExecCommand("SelectAll", True, vbNull)
+            WebBrowser1.Document.ExecCommand("Copy", False, vbNull)
+            Dim sourceCode As String = ""
+            sourceCode = Clipboard.GetText
+            sourceCode = sourceCode.Replace$(vbCrLf, "").Replace$("2017", "").Replace$(" ", ":").Replace$("/", "&&&&")
+            Dim matches As MatchCollection = Regex.Matches(sourceCode, "\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}:\d{1,5}")
+            For Each m As Match In matches ' Loop over matches.
+                For Each c As Capture In m.Captures ' Loop over captures.
+                    ListView1.Items.Add(c.Value)
+                Next
+            Next
+            Clipboard.Clear()
+            cbHTTPtunnel.ForeColor = Color.Green
+            Progress.Value = Progress.Value + 10
+            lbCountProxys.Text = ListView1.Items.Count
+        End If
+        If cbPremProxy.Checked = True Then
+            WebBrowser1.Navigate("https://premproxy.com/proxy/")
+            WaitForPageLoad()
+
+            WebBrowser1.Document.ExecCommand("SelectAll", True, vbNull)
+            WebBrowser1.Document.ExecCommand("Copy", False, vbNull)
+            Dim sourceCode As String = ""
+            sourceCode = Clipboard.GetText
+            sourceCode = sourceCode.Replace$(vbCrLf, "")
+            Dim matches As MatchCollection = Regex.Matches(sourceCode, "\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}:\d{1,5}")
+            For Each m As Match In matches ' Loop over matches.
+                For Each c As Capture In m.Captures ' Loop over captures.
+                    ListView1.Items.Add(c.Value)
+                Next
+            Next
+            Clipboard.Clear()
+            cbPremProxy.ForeColor = Color.Green
+            Progress.Value = Progress.Value + 10
+            lbCountProxys.Text = ListView1.Items.Count
+        End If
+
+        Button1.Enabled = True
+        lbCountProxys.Text = ListView1.Items.Count
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub WaitForPageLoad()
@@ -93,5 +263,29 @@ Public Class Form2
             Form1.txtIP.Text = Me.ListView1.SelectedItems.Item(i).Text
             Form1.btnApply.PerformClick() 'Connect
         Next
+    End Sub
+
+    Private Sub cbSelect_CheckedChanged(sender As Object, e As EventArgs) Handles cbSelect.CheckedChanged
+        If cbSelect.Checked = True Then
+            cbHideMyAss.Checked = True
+            cbHideMyName.Checked = True
+            cbNNTIME.Checked = True
+            cbPremProxy.Checked = True
+            cbFreeProxyList2.Checked = True
+            cbSpysru.Checked = True
+            cbGatherProxy.Checked = True
+            cbHTTPtunnel.Checked = True
+            cbProxyNova.Checked = True
+        Else
+            cbHideMyAss.Checked = False
+            cbHideMyName.Checked = False
+            cbNNTIME.Checked = False
+            cbPremProxy.Checked = False
+            cbFreeProxyList2.Checked = False
+            cbSpysru.Checked = False
+            cbGatherProxy.Checked = False
+            cbHTTPtunnel.Checked = False
+            cbProxyNova.Checked = False
+        End If
     End Sub
 End Class

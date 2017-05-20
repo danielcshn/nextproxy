@@ -15,6 +15,10 @@ Public Class Form1
     Private Sub btnApply_Click(sender As Object, e As EventArgs) Handles btnApply.Click
         Dim proxy As String = txtIP.Text
 
+        lbConnection.Text = "Connected!"
+        lbConnection.ForeColor = Color.Green
+        PictureBox1.Image = ImageList1.Images(0)
+
         Dim matches As MatchCollection = Regex.Matches(proxy, "\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}")
         For Each m As Match In matches ' Loop over matches.
             For Each c As Capture In m.Captures ' Loop over captures.
@@ -22,7 +26,6 @@ Public Class Form1
                 ProxyDataGeoCountry(c.Value)
             Next
         Next
-
         If My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings", "ProxyServer", Nothing) Is Nothing Then
             My.Computer.Registry.CurrentUser.CreateSubKey("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings")
             My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings", "ProxyServer", proxy)
@@ -37,6 +40,11 @@ Public Class Form1
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Dim proxy As String = txtIP.Text
+
+        lbConnection.Text = "Not connected!"
+        lbConnection.ForeColor = Color.Red
+        PictureBox1.Image = ImageList1.Images(1)
+
         lbIPProxy.Text = "***.*.*.***"
         'Proxy Enable:
         My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings", "ProxyEnable", "0", RegistryValueKind.DWord)
@@ -89,5 +97,22 @@ Public Class Form1
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Form2.Show()
+    End Sub
+
+    Private Sub Notify_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Notify.MouseDoubleClick
+        ShowInTaskbar = True
+        Me.WindowState = FormWindowState.Normal
+        Notify.Visible = False
+    End Sub
+
+    Private Sub Form1_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+        If Me.WindowState = FormWindowState.Minimized Then
+            Notify.Visible = True
+            'Notify.Icon = SystemIcons.Application
+            Notify.BalloonTipIcon = ToolTipIcon.Info
+            Notify.BalloonTipText = "Verificador corriendo"
+            'Me.Hide()
+            ShowInTaskbar = False
+        End If
     End Sub
 End Class
