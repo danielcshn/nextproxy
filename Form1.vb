@@ -46,6 +46,7 @@ Public Class Form1
         PictureBox1.Image = ImageList1.Images(1)
 
         lbIPProxy.Text = "***.*.*.***"
+        lbCountryProxy.Text = "**"
         'Proxy Enable:
         My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings", "ProxyEnable", "0", RegistryValueKind.DWord)
     End Sub

@@ -22,9 +22,12 @@ Partial Class Form2
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.pxColumn = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ContextMenuList = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CheckUplinkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
         Me.cbHideMyAss = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -40,12 +43,15 @@ Partial Class Form2
         Me.lbCountProxys = New System.Windows.Forms.Label()
         Me.cbSelect = New System.Windows.Forms.CheckBox()
         Me.cbProxyNova = New System.Windows.Forms.CheckBox()
+        Me.ContextMenuList.SuspendLayout()
         Me.SuspendLayout()
         '
         'ListView1
         '
         Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.pxColumn})
+        Me.ListView1.ContextMenuStrip = Me.ContextMenuList
         Me.ListView1.Location = New System.Drawing.Point(12, 12)
+        Me.ListView1.MultiSelect = False
         Me.ListView1.Name = "ListView1"
         Me.ListView1.Size = New System.Drawing.Size(190, 318)
         Me.ListView1.TabIndex = 0
@@ -56,6 +62,18 @@ Partial Class Form2
         '
         Me.pxColumn.Text = "IP Proxy List"
         Me.pxColumn.Width = 160
+        '
+        'ContextMenuList
+        '
+        Me.ContextMenuList.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CheckUplinkToolStripMenuItem})
+        Me.ContextMenuList.Name = "ContextMenuList"
+        Me.ContextMenuList.Size = New System.Drawing.Size(153, 48)
+        '
+        'CheckUplinkToolStripMenuItem
+        '
+        Me.CheckUplinkToolStripMenuItem.Name = "CheckUplinkToolStripMenuItem"
+        Me.CheckUplinkToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CheckUplinkToolStripMenuItem.Text = "Check Uplink"
         '
         'WebBrowser1
         '
@@ -230,6 +248,7 @@ Partial Class Form2
         Me.Name = "Form2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Proxy List"
+        Me.ContextMenuList.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -252,4 +271,6 @@ Partial Class Form2
     Friend WithEvents lbCountProxys As Label
     Friend WithEvents cbSelect As CheckBox
     Friend WithEvents cbProxyNova As CheckBox
+    Friend WithEvents ContextMenuList As ContextMenuStrip
+    Friend WithEvents CheckUplinkToolStripMenuItem As ToolStripMenuItem
 End Class

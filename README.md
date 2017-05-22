@@ -12,6 +12,9 @@
 
 ## Changelog
 
+**v1.0.0.5** May 21, 2017
+- Add Check Proxy.
+
 **v1.0.0.4** May 20, 2017
 - Add Windows Notification.
 - Add Connection Status.

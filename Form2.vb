@@ -1,11 +1,13 @@
-﻿Imports System.Text.RegularExpressions
+﻿Imports System.Net
+Imports System.Text.RegularExpressions
+Imports System.Threading
 
 Public Class Form2
-
     Private Property pageready As Boolean = False
+    Private trd As Thread
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        CheckForIllegalCrossThreadCalls = False
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -287,5 +289,55 @@ Public Class Form2
             cbHTTPtunnel.Checked = False
             cbProxyNova.Checked = False
         End If
+    End Sub
+
+    Private Sub CheckUplinkToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckUplinkToolStripMenuItem.Click
+        CheckUplinkToolStripMenuItem.Enabled = False
+        Progress.Maximum = 100
+        Progress.Value = 0
+        trd = New Thread(AddressOf ThreadTask)
+        trd.IsBackground = True
+        trd.Start()
+    End Sub
+
+    Private Sub ThreadTask()
+        For i As Integer = 0 To ListView1.SelectedItems.Count - 1
+            Try
+                Dim NewProxy As New WebProxy(Me.ListView1.SelectedItems.Item(i).Text)
+                Dim request As WebRequest = WebRequest.Create("https://www.google.com")
+                Progress.Value = Progress.Value + 50
+                request.Proxy = NewProxy
+                request.Timeout = 5000
+                Dim response As HttpWebResponse = CType(request.GetResponse(), HttpWebResponse)
+                If (response.StatusCode = HttpStatusCode.OK) Then
+                    Progress.Value = Progress.Value + 50
+                    MsgBox("Proxy Status On!")
+                Else
+                    Progress.Value = Progress.Value + 50
+                    MsgBox("Proxy Status Off!")
+                End If
+            Catch ex As Exception
+                Progress.Value = Progress.Value + 50
+                MsgBox("Proxy Status Off!")
+            End Try
+            CheckUplinkToolStripMenuItem.Enabled = True
+        Next
+    End Sub
+
+    Public Sub Verify(ProxyList As String)
+        Try
+            Dim NewProxy As New WebProxy(ProxyList)
+            Dim request As WebRequest = WebRequest.Create("https://www.google.com")
+            request.Proxy = NewProxy
+            request.Timeout = 5000
+            Dim response As HttpWebResponse = CType(request.GetResponse(), HttpWebResponse)
+            If (response.StatusCode = HttpStatusCode.OK) Then
+                MsgBox("ok")
+            Else
+                MsgBox("no")
+            End If
+        Catch ex As Exception
+            MsgBox("no")
+        End Try
     End Sub
 End Class

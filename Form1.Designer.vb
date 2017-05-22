@@ -182,9 +182,9 @@ Partial Class Form1
         Me.lbIPProxy.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbIPProxy.Location = New System.Drawing.Point(81, 163)
         Me.lbIPProxy.Name = "lbIPProxy"
-        Me.lbIPProxy.Size = New System.Drawing.Size(184, 25)
+        Me.lbIPProxy.Size = New System.Drawing.Size(91, 25)
         Me.lbIPProxy.TabIndex = 14
-        Me.lbIPProxy.Text = "???.?.?.??? (Proxy)"
+        Me.lbIPProxy.Text = "***.*.*.***"
         '
         'lbCountryProxy
         '
@@ -192,9 +192,9 @@ Partial Class Form1
         Me.lbCountryProxy.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbCountryProxy.Location = New System.Drawing.Point(81, 189)
         Me.lbCountryProxy.Name = "lbCountryProxy"
-        Me.lbCountryProxy.Size = New System.Drawing.Size(40, 25)
+        Me.lbCountryProxy.Size = New System.Drawing.Size(28, 25)
         Me.lbCountryProxy.TabIndex = 15
-        Me.lbCountryProxy.Text = "UK"
+        Me.lbCountryProxy.Text = "**"
         '
         'Button1
         '
