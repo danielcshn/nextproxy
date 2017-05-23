@@ -16,6 +16,8 @@ Public Class Form1
         Dim proxy As String = txtIP.Text
 
         lbConnection.Text = "Connected!"
+        lbtxt1.Text = "Secure: Your internet traffic is encrypted and"
+        lbtxt2.Text = "your virtual online identity is private."
         lbConnection.ForeColor = Color.Green
         PictureBox1.Image = ImageList1.Images(0)
 
@@ -42,6 +44,8 @@ Public Class Form1
         Dim proxy As String = txtIP.Text
 
         lbConnection.Text = "Not connected!"
+        lbtxt1.Text = "Warning: Your internet traffic is unencrypted and"
+        lbtxt2.Text = "your virtual online identity is exposed."
         lbConnection.ForeColor = Color.Red
         PictureBox1.Image = ImageList1.Images(1)
 
