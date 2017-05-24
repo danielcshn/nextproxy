@@ -1,5 +1,4 @@
-﻿Imports System.Threading
-Imports System.IO
+﻿Imports System.IO
 Imports System.Net
 Imports System.Text
 Imports System.Text.RegularExpressions
@@ -116,7 +115,7 @@ Public Class Form1
             'Notify.Icon = SystemIcons.Application
             Notify.BalloonTipIcon = ToolTipIcon.Info
             Notify.BalloonTipTitle = "NextProxy"
-            Notify.BalloonTipText = "Verificador corriendo"
+            Notify.BalloonTipText = "NextProxy will remain hidden."
             Notify.ShowBalloonTip(10000)
             'Me.Hide()
             ShowInTaskbar = False
