@@ -1,10 +1,14 @@
 ﻿Imports System.Net
 Imports System.Text.RegularExpressions
 Imports System.Threading
+Imports System.ComponentModel
+Imports System.IO
 
 Public Class Form2
     Private Property pageready As Boolean = False
     Private trd As Thread
+    Dim count As Integer = 0
+    Dim linea As String
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CheckForIllegalCrossThreadCalls = False
@@ -311,14 +315,14 @@ Public Class Form2
                 Dim response As HttpWebResponse = CType(request.GetResponse(), HttpWebResponse)
                 If (response.StatusCode = HttpStatusCode.OK) Then
                     Progress.Value = Progress.Value + 50
-                    MsgBox("Proxy Status On!")
+                    ListView1.Items.Item(i).BackColor = Color.Green
                 Else
                     Progress.Value = Progress.Value + 50
-                    MsgBox("Proxy Status Off!")
+                    ListView1.Items.Item(i).BackColor = Color.Red
                 End If
             Catch ex As Exception
                 Progress.Value = Progress.Value + 50
-                MsgBox("Proxy Status Off!")
+                ListView1.Items.Item(i).BackColor = Color.Red
             End Try
             CheckUplinkToolStripMenuItem.Enabled = True
         Next
@@ -339,5 +343,49 @@ Public Class Form2
         Catch ex As Exception
             MsgBox("no")
         End Try
+    End Sub
+
+    Private Sub CheckAllToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckAllToolStripMenuItem.Click
+        linea = ListView1.Items.Item(count).Text
+        BackgroundWorker1.RunWorkerAsync()
+    End Sub
+
+    Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+        Try
+            Dim NewProxy As New WebProxy(linea)
+            Dim request As WebRequest = WebRequest.Create("http://www.google.com")
+            request.Proxy = NewProxy
+            request.Timeout = 10000
+            Dim response As HttpWebResponse = CType(request.GetResponse(), HttpWebResponse)
+            If (response.StatusCode = HttpStatusCode.OK) Then
+                ListView1.Items.Item(count).BackColor = Color.Green
+            Else
+                ListView1.Items.Item(count).BackColor = Color.Red
+                'request.KeepAlive = False
+            End If
+        Catch ex As Exception
+            ListView1.Items.Item(count).BackColor = Color.AliceBlue
+        End Try
+    End Sub
+
+    Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
+        If count = ListView1.Items.Count - 1 Then
+            count = 0
+            linea = ""
+            MsgBox("TerminoOK")
+        Else
+            'Increment
+            count += 1
+            linea = ListView1.Items.Item(count).Text
+            BackgroundWorker1.RunWorkerAsync()
+        End If
+    End Sub
+
+    Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
+
+    End Sub
+
+    Private Sub cbHideMyAss_CheckedChanged(sender As Object, e As EventArgs) Handles cbHideMyAss.CheckedChanged
+
     End Sub
 End Class

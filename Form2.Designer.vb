@@ -28,6 +28,7 @@ Partial Class Form2
         Me.pxColumn = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ContextMenuList = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CheckUplinkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
         Me.cbHideMyAss = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -43,6 +44,7 @@ Partial Class Form2
         Me.lbCountProxys = New System.Windows.Forms.Label()
         Me.cbSelect = New System.Windows.Forms.CheckBox()
         Me.cbProxyNova = New System.Windows.Forms.CheckBox()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.ContextMenuList.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -65,15 +67,21 @@ Partial Class Form2
         '
         'ContextMenuList
         '
-        Me.ContextMenuList.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CheckUplinkToolStripMenuItem})
+        Me.ContextMenuList.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CheckUplinkToolStripMenuItem, Me.CheckAllToolStripMenuItem})
         Me.ContextMenuList.Name = "ContextMenuList"
-        Me.ContextMenuList.Size = New System.Drawing.Size(153, 48)
+        Me.ContextMenuList.Size = New System.Drawing.Size(145, 48)
         '
         'CheckUplinkToolStripMenuItem
         '
         Me.CheckUplinkToolStripMenuItem.Name = "CheckUplinkToolStripMenuItem"
-        Me.CheckUplinkToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CheckUplinkToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.CheckUplinkToolStripMenuItem.Text = "Check Uplink"
+        '
+        'CheckAllToolStripMenuItem
+        '
+        Me.CheckAllToolStripMenuItem.Name = "CheckAllToolStripMenuItem"
+        Me.CheckAllToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
+        Me.CheckAllToolStripMenuItem.Text = "Check All"
         '
         'WebBrowser1
         '
@@ -220,6 +228,9 @@ Partial Class Form2
         Me.cbProxyNova.Text = "ProxyNova.com"
         Me.cbProxyNova.UseVisualStyleBackColor = True
         '
+        'BackgroundWorker1
+        '
+        '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -273,4 +284,6 @@ Partial Class Form2
     Friend WithEvents cbProxyNova As CheckBox
     Friend WithEvents ContextMenuList As ContextMenuStrip
     Friend WithEvents CheckUplinkToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CheckAllToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
 End Class

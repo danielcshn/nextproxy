@@ -121,4 +121,17 @@ Public Class Form1
             ShowInTaskbar = False
         End If
     End Sub
+
+    Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Dim proxy As String = txtIP.Text
+        lbConnection.Text = "Not connected!"
+        lbtxt1.Text = "Warning: Your internet traffic is unencrypted and"
+        lbtxt2.Text = "your virtual online identity is exposed."
+        lbConnection.ForeColor = Color.Red
+        PictureBox1.Image = ImageList1.Images(1)
+        lbIPProxy.Text = "***.*.*.***"
+        lbCountryProxy.Text = "**"
+        My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings", "ProxyEnable", "0", RegistryValueKind.DWord)
+        Notify.Visible = False
+    End Sub
 End Class

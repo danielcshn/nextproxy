@@ -12,6 +12,11 @@
 
 ## Changelog
 
+**v1.0.0.6** May 26, 2017
+- Add Check All Proxy's.
+- Fix: Icon Display Notify when closing.
+- Fix: When closing, disconnect the proxy.
+
 **v1.0.0.5** May 21, 2017
 - Add Check Proxy.
 

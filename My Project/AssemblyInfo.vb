@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("NextProxy")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("KRIPT")>
 <Assembly: AssemblyProduct("NextProxy")>
 <Assembly: AssemblyCopyright("Copyright © KRIPT 2017")>
 <Assembly: AssemblyTrademark("")>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' mediante el carácter '*', como se muestra a continuación:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.4")>
-<Assembly: AssemblyFileVersion("1.0.0.4")>
+<Assembly: AssemblyVersion("1.0.0.5")>
+<Assembly: AssemblyFileVersion("1.0.0.5")>
