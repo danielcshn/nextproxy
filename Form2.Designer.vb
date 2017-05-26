@@ -45,6 +45,14 @@ Partial Class Form2
         Me.cbSelect = New System.Windows.Forms.CheckBox()
         Me.cbProxyNova = New System.Windows.Forms.CheckBox()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CSVToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CSVToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TXTToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ClearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuList.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -67,20 +75,20 @@ Partial Class Form2
         '
         'ContextMenuList
         '
-        Me.ContextMenuList.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CheckUplinkToolStripMenuItem, Me.CheckAllToolStripMenuItem})
+        Me.ContextMenuList.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CheckUplinkToolStripMenuItem, Me.CheckAllToolStripMenuItem, Me.ToolStripMenuItem1, Me.SaveToolStripMenuItem, Me.OpenToolStripMenuItem, Me.ToolStripMenuItem2, Me.ClearToolStripMenuItem})
         Me.ContextMenuList.Name = "ContextMenuList"
-        Me.ContextMenuList.Size = New System.Drawing.Size(145, 48)
+        Me.ContextMenuList.Size = New System.Drawing.Size(153, 148)
         '
         'CheckUplinkToolStripMenuItem
         '
         Me.CheckUplinkToolStripMenuItem.Name = "CheckUplinkToolStripMenuItem"
-        Me.CheckUplinkToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
+        Me.CheckUplinkToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.CheckUplinkToolStripMenuItem.Text = "Check Uplink"
         '
         'CheckAllToolStripMenuItem
         '
         Me.CheckAllToolStripMenuItem.Name = "CheckAllToolStripMenuItem"
-        Me.CheckAllToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
+        Me.CheckAllToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.CheckAllToolStripMenuItem.Text = "Check All"
         '
         'WebBrowser1
@@ -231,6 +239,54 @@ Partial Class Form2
         'BackgroundWorker1
         '
         '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(149, 6)
+        '
+        'SaveToolStripMenuItem
+        '
+        Me.SaveToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CSVToolStripMenuItem, Me.TXTToolStripMenuItem})
+        Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SaveToolStripMenuItem.Text = "Save"
+        '
+        'CSVToolStripMenuItem
+        '
+        Me.CSVToolStripMenuItem.Name = "CSVToolStripMenuItem"
+        Me.CSVToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CSVToolStripMenuItem.Text = "CSV"
+        '
+        'OpenToolStripMenuItem
+        '
+        Me.OpenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CSVToolStripMenuItem1})
+        Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OpenToolStripMenuItem.Text = "Open"
+        '
+        'CSVToolStripMenuItem1
+        '
+        Me.CSVToolStripMenuItem1.Name = "CSVToolStripMenuItem1"
+        Me.CSVToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.CSVToolStripMenuItem1.Text = "CSV"
+        '
+        'TXTToolStripMenuItem
+        '
+        Me.TXTToolStripMenuItem.Name = "TXTToolStripMenuItem"
+        Me.TXTToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.TXTToolStripMenuItem.Text = "TXT"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(149, 6)
+        '
+        'ClearToolStripMenuItem
+        '
+        Me.ClearToolStripMenuItem.Name = "ClearToolStripMenuItem"
+        Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ClearToolStripMenuItem.Text = "Clear"
+        '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -286,4 +342,12 @@ Partial Class Form2
     Friend WithEvents CheckUplinkToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CheckAllToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
+    Friend WithEvents SaveToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CSVToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OpenToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CSVToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents TXTToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
+    Friend WithEvents ClearToolStripMenuItem As ToolStripMenuItem
 End Class

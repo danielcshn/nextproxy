@@ -1,4 +1,5 @@
-﻿Imports System.Net
+﻿Imports System.IO
+Imports System.Net
 Imports System.Text.RegularExpressions
 Imports System.Threading
 
@@ -10,6 +11,8 @@ Public Class Form2
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CheckForIllegalCrossThreadCalls = False
+        BackgroundWorker1.WorkerSupportsCancellation = True
+
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -313,14 +316,14 @@ Public Class Form2
                 Dim response As HttpWebResponse = CType(request.GetResponse(), HttpWebResponse)
                 If (response.StatusCode = HttpStatusCode.OK) Then
                     Progress.Value = Progress.Value + 50
-                    ListView1.Items.Item(i).BackColor = Color.Green
+                    Me.ListView1.SelectedItems.Item(i).BackColor = Color.Green
                 Else
                     Progress.Value = Progress.Value + 50
-                    ListView1.Items.Item(i).BackColor = Color.Red
+                    Me.ListView1.SelectedItems.Item(i).BackColor = Color.Red
                 End If
             Catch ex As Exception
                 Progress.Value = Progress.Value + 50
-                ListView1.Items.Item(i).BackColor = Color.Red
+                Me.ListView1.SelectedItems.Item(i).BackColor = Color.Red
             End Try
             CheckUplinkToolStripMenuItem.Enabled = True
         Next
@@ -359,26 +362,126 @@ Public Class Form2
             Dim response As HttpWebResponse = CType(request.GetResponse(), HttpWebResponse)
             If (response.StatusCode = HttpStatusCode.OK) Then
                 ListView1.Items.Item(count).BackColor = Color.Green
+                ListView1.Items.Item(count).ForeColor = Color.White
             Else
                 ListView1.Items.Item(count).BackColor = Color.Red
                 'request.KeepAlive = False
             End If
         Catch ex As Exception
-            ListView1.Items.Item(count).BackColor = Color.Red
+            Try
+                ListView1.Items.Item(count).BackColor = Color.Red
+            Catch
+
+            End Try
         End Try
     End Sub
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         If count = ListView1.Items.Count - 1 Then
-            count = 0
-            linea = ""
-            Progress.Value = ListView1.Items.Count
+            Try
+                count = 0
+                linea = ""
+                Progress.Value = ListView1.Items.Count
+            Catch
+
+            End Try
         Else
-            'Increment
-            count += 1
-            Progress.Value = Progress.Value + 1
-            linea = ListView1.Items.Item(count).Text
-            BackgroundWorker1.RunWorkerAsync()
+            Try
+                'Increment
+                count += 1
+                Progress.Value = Progress.Value + 1
+                linea = ListView1.Items.Item(count).Text
+                BackgroundWorker1.RunWorkerAsync()
+            Catch
+
+            End Try
         End If
+    End Sub
+
+    Private Sub CSVToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CSVToolStripMenuItem.Click
+        Dim dlg As New SaveFileDialog
+        dlg.Filter = "CSV files (*.CSV)|*.csv"
+        dlg.FilterIndex = 1
+        dlg.RestoreDirectory = True
+        If dlg.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If ExportListViewToCSV(dlg.FileName, ListView1) Then
+                Process.Start(dlg.FileName)
+            End If
+        End If
+    End Sub
+
+    Public Function ExportListViewToCSV(ByVal filename As String, ByVal lv As ListView) As Boolean
+        Try
+            ' Open output file
+            Dim os As New StreamWriter(filename)
+
+            ' Write records
+            For i As Integer = 0 To lv.Items.Count - 1
+                For j As Integer = 0 To lv.Columns.Count - 1
+                    os.Write(lv.Items(i).SubItems(j).Text + ";")
+                Next
+                os.WriteLine()
+            Next
+            os.Close()
+        Catch ex As Exception
+            ' catch any errors
+            Return False
+        End Try
+        Return True
+    End Function
+
+    Private Sub CSVToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CSVToolStripMenuItem1.Click
+        Dim ofd As New OpenFileDialog
+        If ofd.ShowDialog = Windows.Forms.DialogResult.OK AndAlso ofd.FileName <> "" Then
+            Try
+                Using reader As New Microsoft.VisualBasic.FileIO.TextFieldParser(ofd.FileName)
+                    reader.TextFieldType = FileIO.FieldType.Delimited
+                    reader.SetDelimiters(";")
+                    While Not reader.EndOfData
+                        Dim Fields() As String = reader.ReadFields
+                        Dim item As New ListViewItem
+                        item.Text = Fields(0)
+                        For x = 1 To UBound(Fields)
+                            item.SubItems.Add(Fields(x))
+                        Next
+                        ListView1.Items.Add(item)
+                    End While
+                End Using
+            Catch ex As Exception
+                MessageBox.Show(Err.Description)
+            End Try
+        End If
+
+    End Sub
+
+    Private Sub TXTToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TXTToolStripMenuItem.Click
+
+        Dim dlg As New SaveFileDialog
+        dlg.Filter = "TXT files (*.TXT)|*.txt"
+        dlg.FilterIndex = 1
+        dlg.RestoreDirectory = True
+        If dlg.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Using file As New IO.StreamWriter(dlg.FileName, False)
+                Dim line As String = ""
+                For Each item As ListViewItem In Me.ListView1.Items
+                    line = ""
+                    For Each subitem As ListViewItem.ListViewSubItem In item.SubItems
+                        line += subitem.Text '+ vbTab
+                    Next
+                    file.WriteLine(line)
+                Next
+                file.Close()
+            End Using
+        End If
+
+        Process.Start(dlg.FileName)
+    End Sub
+
+    Private Sub Form2_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Me.BackgroundWorker1.CancelAsync()
+    End Sub
+
+    Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
+        ListView1.Items.Clear()
     End Sub
 End Class
