@@ -485,4 +485,41 @@ Public Class Form2
     Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
         ListView1.Items.Clear()
     End Sub
+
+    Private Sub TXTToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles TXTToolStripMenuItem1.Click
+        Dim openfile = New OpenFileDialog()
+        openfile.Filter = "Text (*.txt)|*.txt"
+        If (openfile.ShowDialog() = System.Windows.Forms.DialogResult.OK) Then
+            Dim myfile As String = openfile.FileName
+            Dim allLines As String() = File.ReadAllLines(myfile)
+            For Each line As String In allLines
+                ListView1.Items.Add(line)
+            Next
+        End If
+    End Sub
+
+    Private Sub RemoveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveToolStripMenuItem.Click
+        ' Remove IP Address : Port.
+        For i As Integer = ListView1.SelectedItems.Count - 1 To 0 Step -1
+            ListView1.SelectedItems(i).Remove()
+            lbCountProxys.Text = ListView1.Items.Count
+        Next
+    End Sub
+
+    Private Sub CopyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyToolStripMenuItem.Click
+        ' Copy IP Address : Port to Clipboard.
+        For i As Integer = ListView1.SelectedItems.Count - 1 To 0 Step -1
+            My.Computer.Clipboard.SetText(ListView1.SelectedItems(i).Text)
+        Next
+    End Sub
+
+    Private Sub RemoveDownlinkToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveDownlinkToolStripMenuItem.Click
+        ' Remove IP Address : Port Status: Downlink
+        For Each item As ListViewItem In Me.ListView1.Items
+            If item.BackColor = Color.Red Then
+                item.Remove()
+                lbCountProxys.Text = ListView1.Items.Count
+            End If
+        Next
+    End Sub
 End Class

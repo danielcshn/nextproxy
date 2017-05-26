@@ -15,8 +15,10 @@
 **v1.0.0.6** May 26, 2017
 - Add Check All Proxy's.
 - Add Sesion Time Elapsed.
+- Add Copy Clipboard & Remove Proxy List.
+- Add Remove Downlink Proxy List.
 - Add Export Proxy List to CSV & TXT.
-- Add Import Proxy List from CSV.
+- Add Import Proxy List from CSV & TXT.
 - Fix: Icon Display Notify when closing.
 - Fix: When closing, disconnect the proxy.
 
