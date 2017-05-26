@@ -41,6 +41,8 @@ Partial Class Form1
         Me.lbCountryProxy = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Notify = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.lbSesion = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbCountry, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pxCountry, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,6 +61,7 @@ Partial Class Form1
         '
         Me.txtIP.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtIP.Location = New System.Drawing.Point(12, 249)
+        Me.txtIP.MaxLength = 21
         Me.txtIP.Name = "txtIP"
         Me.txtIP.Size = New System.Drawing.Size(303, 30)
         Me.txtIP.TabIndex = 1
@@ -211,11 +214,29 @@ Partial Class Form1
         Me.Notify.Text = "NextProxy"
         Me.Notify.Visible = True
         '
+        'lbSesion
+        '
+        Me.lbSesion.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbSesion.AutoSize = True
+        Me.lbSesion.Location = New System.Drawing.Point(206, 233)
+        Me.lbSesion.Name = "lbSesion"
+        Me.lbSesion.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.lbSesion.Size = New System.Drawing.Size(113, 13)
+        Me.lbSesion.TabIndex = 17
+        Me.lbSesion.Text = "Sesion Time: 00:00:00"
+        Me.lbSesion.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Timer1
+        '
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(327, 342)
+        Me.Controls.Add(Me.lbSesion)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnApply)
@@ -262,4 +283,6 @@ Partial Class Form1
     Friend WithEvents lbCountryProxy As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Notify As NotifyIcon
+    Friend WithEvents lbSesion As Label
+    Friend WithEvents Timer1 As Timer
 End Class

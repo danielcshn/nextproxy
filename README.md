@@ -14,6 +14,7 @@
 
 **v1.0.0.6** May 26, 2017
 - Add Check All Proxy's.
+- Add Sesion Time Elapsed.
 - Add Export Proxy List to CSV & TXT.
 - Add Import Proxy List from CSV.
 - Fix: Icon Display Notify when closing.

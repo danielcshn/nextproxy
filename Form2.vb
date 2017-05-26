@@ -269,6 +269,7 @@ Public Class Form2
         For i As Integer = 0 To ListView1.SelectedItems.Count - 1
             Form1.txtIP.Text = Me.ListView1.SelectedItems.Item(i).Text
             Form1.btnApply.PerformClick() 'Connect
+            Me.BackgroundWorker1.CancelAsync()
         Next
     End Sub
 

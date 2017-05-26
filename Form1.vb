@@ -7,11 +7,18 @@ Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 
 Public Class Form1
+    Dim dteStart As Date = Nothing
+    Dim dteEnd As Date = Nothing
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ValueDataGeoCountry()
     End Sub
 
     Private Sub btnApply_Click(sender As Object, e As EventArgs) Handles btnApply.Click
+        Timer1.Enabled = True
+
+        dteStart = DateTime.Now
+
         Dim proxy As String = txtIP.Text
 
         lbConnection.Text = "Connected!"
@@ -40,6 +47,8 @@ Public Class Form1
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        dteEnd = DateTime.Now
+
         Dim proxy As String = txtIP.Text
 
         lbConnection.Text = "Not connected!"
@@ -52,6 +61,8 @@ Public Class Form1
         lbCountryProxy.Text = "**"
         'Proxy Enable:
         My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings", "ProxyEnable", "0", RegistryValueKind.DWord)
+
+        Timer1.Enabled = False
     End Sub
 
     Private Function ValueDataGeoCountry()
@@ -123,6 +134,7 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        ' FormClosing disconnect proxy connection.
         Dim proxy As String = txtIP.Text
         lbConnection.Text = "Not connected!"
         lbtxt1.Text = "Warning: Your internet traffic is unencrypted and"
@@ -133,5 +145,24 @@ Public Class Form1
         lbCountryProxy.Text = "**"
         My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings", "ProxyEnable", "0", RegistryValueKind.DWord)
         Notify.Visible = False
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        TimeExact()
+    End Sub
+
+    Private Sub TimeExact()
+        ' Sesion Time Elapsed.
+        Dim lngTimeElapsed = DateTime.Now - dteStart
+        Dim forTimeElapsed = String.Format("{0:HH:mm:ss}", New DateTime(lngTimeElapsed.Ticks))
+        lbSesion.Text = "Sesion Time: " & forTimeElapsed
+    End Sub
+
+    Private Sub txtIP_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtIP.KeyPress
+        ' txtIP Only Numbers & "." & ":".
+        Dim allowedChars As String = ".:"
+        If Char.IsDigit(e.KeyChar) = False And Char.IsControl(e.KeyChar) = False And allowedChars.IndexOf(e.KeyChar) = -1 Then
+            e.Handled = True
+        End If
     End Sub
 End Class
