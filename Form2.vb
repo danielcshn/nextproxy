@@ -1,14 +1,12 @@
 ﻿Imports System.Net
 Imports System.Text.RegularExpressions
 Imports System.Threading
-Imports System.ComponentModel
-Imports System.IO
 
 Public Class Form2
     Private Property pageready As Boolean = False
     Private trd As Thread
     Dim count As Integer = 0
-    Dim linea As String
+    Dim linea As String = ""
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CheckForIllegalCrossThreadCalls = False
@@ -346,6 +344,8 @@ Public Class Form2
     End Sub
 
     Private Sub CheckAllToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckAllToolStripMenuItem.Click
+        Progress.Maximum = ListView1.Items.Count
+        Progress.Value = 0
         linea = ListView1.Items.Item(count).Text
         BackgroundWorker1.RunWorkerAsync()
     End Sub
@@ -364,7 +364,7 @@ Public Class Form2
                 'request.KeepAlive = False
             End If
         Catch ex As Exception
-            ListView1.Items.Item(count).BackColor = Color.AliceBlue
+            ListView1.Items.Item(count).BackColor = Color.Red
         End Try
     End Sub
 
@@ -372,20 +372,13 @@ Public Class Form2
         If count = ListView1.Items.Count - 1 Then
             count = 0
             linea = ""
-            MsgBox("TerminoOK")
+            Progress.Value = ListView1.Items.Count
         Else
             'Increment
             count += 1
+            Progress.Value = Progress.Value + 1
             linea = ListView1.Items.Item(count).Text
             BackgroundWorker1.RunWorkerAsync()
         End If
-    End Sub
-
-    Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
-
-    End Sub
-
-    Private Sub cbHideMyAss_CheckedChanged(sender As Object, e As EventArgs) Handles cbHideMyAss.CheckedChanged
-
     End Sub
 End Class
