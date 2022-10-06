@@ -11,6 +11,7 @@ Public Class Form1
     Dim dteEnd As Date = Nothing
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings", "ProxyEnable", "0", RegistryValueKind.DWord)
         ValueDataGeoCountry()
     End Sub
 
@@ -57,7 +58,7 @@ Public Class Form1
         lbConnection.ForeColor = Color.Red
         PictureBox1.Image = ImageList1.Images(1)
 
-        lbIPProxy.Text = "***.*.*.***"
+        lbIPProxy.Text = "***.***.***.***"
         lbCountryProxy.Text = "**"
         'Proxy Enable:
         My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings", "ProxyEnable", "0", RegistryValueKind.DWord)
@@ -66,22 +67,17 @@ Public Class Form1
     End Sub
 
     Private Function ValueDataGeoCountry()
-        Dim URLTOGEO As String = "http://ipapi.co/json"
         Try
-            Dim UpdateClient As HttpWebRequest = WebRequest.Create(
-            New Uri(URLTOGEO))
-            UpdateClient.Timeout = 2500
-            Dim response As WebResponse = UpdateClient.GetResponse()
-            Dim content As Stream = response.GetResponseStream()
-            Dim readstream As New StreamReader(content, Encoding.Default)
-            Dim textjson As String = readstream.ReadToEnd
-            readstream.Close()
-            content.Close()
-            Dim json As JObject = JObject.Parse(textjson)
-            lbIPPublic.Text = json.SelectToken("ip")
-            Dim Code As String = json.SelectToken("country")
-            lbCountry.Text = json.SelectToken("country_name")
-            pbCountry.Image = Image.FromFile("flag\" + LCase(Code) + ".png")
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            ' old: https://ipapi.co/json
+            Dim json As String = New System.Net.WebClient().DownloadString("https://ipinfo.io/json")
+            Dim parsejson As JObject = JObject.Parse(json)
+            Dim ipadd As String = parsejson.SelectToken("ip").ToString()
+            Dim country As String = parsejson.SelectToken("country").ToString()
+            Dim country_name As String = parsejson.SelectToken("region").ToString() + ", " + parsejson.SelectToken("country").ToString()
+            lbIPPublic.Text = ipadd
+            lbCountry.Text = country_name
+            pbCountry.Image = Image.FromFile("flag\" + LCase(country) + ".png")
             Return Nothing
         Catch
             Return Nothing
@@ -89,21 +85,19 @@ Public Class Form1
     End Function
 
     Private Function ProxyDataGeoCountry(ipproxy As String)
-        Dim URLTOGEO As String = "http://ipapi.co/" + ipproxy + "/json"
+        ' old: https://ipapi.co/json
+        Dim URLTOGEO As String = "https://ipinfo.io/" + ipproxy + "/json"
+
         Try
-            Dim UpdateClient As HttpWebRequest = WebRequest.Create(
-            New Uri(URLTOGEO))
-            UpdateClient.Timeout = 2500
-            Dim response As WebResponse = UpdateClient.GetResponse()
-            Dim content As Stream = response.GetResponseStream()
-            Dim readstream As New StreamReader(content, Encoding.Default)
-            Dim textjson As String = readstream.ReadToEnd
-            readstream.Close()
-            content.Close()
-            Dim json As JObject = JObject.Parse(textjson)
-            Dim Code As String = json.SelectToken("country")
-            lbCountryProxy.Text = json.SelectToken("country_name")
-            pxCountry.Image = Image.FromFile("flag\" + LCase(Code) + ".png")
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim json As String = New System.Net.WebClient().DownloadString(URLTOGEO)
+            Dim parsejson As JObject = JObject.Parse(json)
+            Dim ipadd As String = parsejson.SelectToken("ip").ToString()
+            Dim country As String = parsejson.SelectToken("country").ToString()
+            Dim country_name As String = parsejson.SelectToken("region").ToString() + ", " + parsejson.SelectToken("country").ToString()
+            lbIPProxy.Text = ipadd
+            lbCountryProxy.Text = country_name
+            pxCountry.Image = Image.FromFile("flag\" + LCase(country) + ".png")
             Return Nothing
         Catch
             Return Nothing
@@ -141,7 +135,7 @@ Public Class Form1
         lbtxt2.Text = "your virtual online identity is exposed."
         lbConnection.ForeColor = Color.Red
         PictureBox1.Image = ImageList1.Images(1)
-        lbIPProxy.Text = "***.*.*.***"
+        lbIPProxy.Text = "***.***.***.***"
         lbCountryProxy.Text = "**"
         My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings", "ProxyEnable", "0", RegistryValueKind.DWord)
         Notify.Visible = False

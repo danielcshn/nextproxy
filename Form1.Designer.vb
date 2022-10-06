@@ -93,9 +93,9 @@ Partial Class Form1
         Me.lbIPPublic.ForeColor = System.Drawing.Color.Red
         Me.lbIPPublic.Location = New System.Drawing.Point(81, 93)
         Me.lbIPPublic.Name = "lbIPPublic"
-        Me.lbIPPublic.Size = New System.Drawing.Size(93, 25)
+        Me.lbIPPublic.Size = New System.Drawing.Size(123, 25)
         Me.lbIPPublic.TabIndex = 4
-        Me.lbIPPublic.Text = "127.0.0.1"
+        Me.lbIPPublic.Text = "***.***.***.***"
         '
         'lbCountry
         '
@@ -103,9 +103,9 @@ Partial Class Form1
         Me.lbCountry.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbCountry.Location = New System.Drawing.Point(81, 119)
         Me.lbCountry.Name = "lbCountry"
-        Me.lbCountry.Size = New System.Drawing.Size(40, 25)
+        Me.lbCountry.Size = New System.Drawing.Size(28, 25)
         Me.lbCountry.TabIndex = 5
-        Me.lbCountry.Text = "UK"
+        Me.lbCountry.Text = "**"
         '
         'lbConnection
         '
@@ -183,11 +183,12 @@ Partial Class Form1
         '
         Me.lbIPProxy.AutoSize = True
         Me.lbIPProxy.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbIPProxy.ForeColor = System.Drawing.Color.Green
         Me.lbIPProxy.Location = New System.Drawing.Point(81, 163)
         Me.lbIPProxy.Name = "lbIPProxy"
-        Me.lbIPProxy.Size = New System.Drawing.Size(91, 25)
+        Me.lbIPProxy.Size = New System.Drawing.Size(123, 25)
         Me.lbIPProxy.TabIndex = 14
-        Me.lbIPProxy.Text = "***.*.*.***"
+        Me.lbIPProxy.Text = "***.***.***.***"
         '
         'lbCountryProxy
         '
@@ -258,6 +259,7 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "NextProxy"
+        Me.TopMost = True
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbCountry, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pxCountry, System.ComponentModel.ISupportInitialize).EndInit()
