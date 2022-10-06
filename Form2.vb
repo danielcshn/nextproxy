@@ -198,6 +198,7 @@ Public Class Form2
             Form1.txtIP.Text = Me.ListView1.SelectedItems.Item(i).Text
             Form1.btnApply.PerformClick() 'Connect
             Me.BackgroundWorker1.CancelAsync()
+            Me.Close()
         Next
     End Sub
 
