@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "NextProxy"
-#define MyAppVersion "1.0.0.6"
+#define MyAppVersion "1.0.0.7"
 #define MyAppPublisher "danielcshn"
 #define MyAppURL "https://github.com/danielcshn/nextproxy"
 #define MyAppExeName "NextProxy.exe"
