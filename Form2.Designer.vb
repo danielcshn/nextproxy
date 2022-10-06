@@ -322,6 +322,7 @@ Partial Class Form2
         Me.Name = "Form2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Proxy List"
+        Me.TopMost = True
         Me.ContextMenuList.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
