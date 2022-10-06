@@ -37,28 +37,25 @@ Partial Class Form2
         Me.CSVToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TXTToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RemoveDownlinkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
         Me.ClearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
-        Me.cbHideMyAss = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.cbHideMyName = New System.Windows.Forms.CheckBox()
-        Me.cbNNTIME = New System.Windows.Forms.CheckBox()
-        Me.cbPremProxy = New System.Windows.Forms.CheckBox()
-        Me.cbFreeProxyList2 = New System.Windows.Forms.CheckBox()
-        Me.cbSpysru = New System.Windows.Forms.CheckBox()
-        Me.cbGatherProxy = New System.Windows.Forms.CheckBox()
-        Me.cbHTTPtunnel = New System.Windows.Forms.CheckBox()
         Me.Progress = New System.Windows.Forms.ProgressBar()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lbCountProxys = New System.Windows.Forms.Label()
-        Me.cbSelect = New System.Windows.Forms.CheckBox()
-        Me.cbProxyNova = New System.Windows.Forms.CheckBox()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RemoveDownlinkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cbSelect = New System.Windows.Forms.CheckBox()
+        Me.cbPremProxy = New System.Windows.Forms.CheckBox()
+        Me.cbHTTPtunnel = New System.Windows.Forms.CheckBox()
+        Me.cbHideMyName = New System.Windows.Forms.CheckBox()
+        Me.cbSpysru = New System.Windows.Forms.CheckBox()
+        Me.cbFreeProxyList2 = New System.Windows.Forms.CheckBox()
+        Me.cbNNTIME = New System.Windows.Forms.CheckBox()
         Me.ContextMenuList.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -66,6 +63,7 @@ Partial Class Form2
         '
         Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.pxColumn})
         Me.ListView1.ContextMenuStrip = Me.ContextMenuList
+        Me.ListView1.HideSelection = False
         Me.ListView1.Location = New System.Drawing.Point(12, 12)
         Me.ListView1.MultiSelect = False
         Me.ListView1.Name = "ListView1"
@@ -83,72 +81,102 @@ Partial Class Form2
         '
         Me.ContextMenuList.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CheckUplinkToolStripMenuItem, Me.CheckAllToolStripMenuItem, Me.ToolStripMenuItem1, Me.SaveToolStripMenuItem, Me.OpenToolStripMenuItem, Me.ToolStripMenuItem2, Me.EditToolStripMenuItem, Me.ToolStripMenuItem3, Me.ClearToolStripMenuItem})
         Me.ContextMenuList.Name = "ContextMenuList"
-        Me.ContextMenuList.Size = New System.Drawing.Size(153, 176)
+        Me.ContextMenuList.Size = New System.Drawing.Size(145, 154)
         '
         'CheckUplinkToolStripMenuItem
         '
         Me.CheckUplinkToolStripMenuItem.Name = "CheckUplinkToolStripMenuItem"
-        Me.CheckUplinkToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CheckUplinkToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.CheckUplinkToolStripMenuItem.Text = "Check Uplink"
         '
         'CheckAllToolStripMenuItem
         '
         Me.CheckAllToolStripMenuItem.Name = "CheckAllToolStripMenuItem"
-        Me.CheckAllToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CheckAllToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.CheckAllToolStripMenuItem.Text = "Check All"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(141, 6)
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CSVToolStripMenuItem, Me.TXTToolStripMenuItem})
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.SaveToolStripMenuItem.Text = "Export"
         '
         'CSVToolStripMenuItem
         '
         Me.CSVToolStripMenuItem.Name = "CSVToolStripMenuItem"
-        Me.CSVToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CSVToolStripMenuItem.Size = New System.Drawing.Size(95, 22)
         Me.CSVToolStripMenuItem.Text = "CSV"
         '
         'TXTToolStripMenuItem
         '
         Me.TXTToolStripMenuItem.Name = "TXTToolStripMenuItem"
-        Me.TXTToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.TXTToolStripMenuItem.Size = New System.Drawing.Size(95, 22)
         Me.TXTToolStripMenuItem.Text = "TXT"
         '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CSVToolStripMenuItem1, Me.TXTToolStripMenuItem1})
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.OpenToolStripMenuItem.Text = "Import"
         '
         'CSVToolStripMenuItem1
         '
         Me.CSVToolStripMenuItem1.Name = "CSVToolStripMenuItem1"
-        Me.CSVToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.CSVToolStripMenuItem1.Size = New System.Drawing.Size(95, 22)
         Me.CSVToolStripMenuItem1.Text = "CSV"
         '
         'TXTToolStripMenuItem1
         '
         Me.TXTToolStripMenuItem1.Name = "TXTToolStripMenuItem1"
-        Me.TXTToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.TXTToolStripMenuItem1.Size = New System.Drawing.Size(95, 22)
         Me.TXTToolStripMenuItem1.Text = "TXT"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(141, 6)
+        '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyToolStripMenuItem, Me.RemoveToolStripMenuItem, Me.RemoveDownlinkToolStripMenuItem})
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
+        Me.EditToolStripMenuItem.Text = "Edit"
+        '
+        'CopyToolStripMenuItem
+        '
+        Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
+        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.CopyToolStripMenuItem.Text = "Copy"
+        '
+        'RemoveToolStripMenuItem
+        '
+        Me.RemoveToolStripMenuItem.Name = "RemoveToolStripMenuItem"
+        Me.RemoveToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.RemoveToolStripMenuItem.Text = "Remove"
+        '
+        'RemoveDownlinkToolStripMenuItem
+        '
+        Me.RemoveDownlinkToolStripMenuItem.Name = "RemoveDownlinkToolStripMenuItem"
+        Me.RemoveDownlinkToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.RemoveDownlinkToolStripMenuItem.Text = "Remove Downlink"
+        '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(141, 6)
         '
         'ClearToolStripMenuItem
         '
         Me.ClearToolStripMenuItem.Name = "ClearToolStripMenuItem"
-        Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.ClearToolStripMenuItem.Text = "Clear"
         '
         'WebBrowser1
@@ -161,16 +189,6 @@ Partial Class Form2
         Me.WebBrowser1.TabIndex = 1
         Me.WebBrowser1.Visible = False
         '
-        'cbHideMyAss
-        '
-        Me.cbHideMyAss.AutoSize = True
-        Me.cbHideMyAss.Location = New System.Drawing.Point(208, 12)
-        Me.cbHideMyAss.Name = "cbHideMyAss"
-        Me.cbHideMyAss.Size = New System.Drawing.Size(102, 17)
-        Me.cbHideMyAss.TabIndex = 2
-        Me.cbHideMyAss.Text = "HideMyAss.com"
-        Me.cbHideMyAss.UseVisualStyleBackColor = True
-        '
         'Button1
         '
         Me.Button1.Location = New System.Drawing.Point(208, 307)
@@ -179,77 +197,6 @@ Partial Class Form2
         Me.Button1.TabIndex = 3
         Me.Button1.Text = "CAPTURE"
         Me.Button1.UseVisualStyleBackColor = True
-        '
-        'cbHideMyName
-        '
-        Me.cbHideMyName.AutoSize = True
-        Me.cbHideMyName.Location = New System.Drawing.Point(208, 35)
-        Me.cbHideMyName.Name = "cbHideMyName"
-        Me.cbHideMyName.Size = New System.Drawing.Size(93, 17)
-        Me.cbHideMyName.TabIndex = 4
-        Me.cbHideMyName.Text = "HideMy.Name"
-        Me.cbHideMyName.UseVisualStyleBackColor = True
-        '
-        'cbNNTIME
-        '
-        Me.cbNNTIME.AutoSize = True
-        Me.cbNNTIME.Location = New System.Drawing.Point(208, 58)
-        Me.cbNNTIME.Name = "cbNNTIME"
-        Me.cbNNTIME.Size = New System.Drawing.Size(88, 17)
-        Me.cbNNTIME.TabIndex = 5
-        Me.cbNNTIME.Text = "NNTime.com"
-        Me.cbNNTIME.UseVisualStyleBackColor = True
-        '
-        'cbPremProxy
-        '
-        Me.cbPremProxy.AutoSize = True
-        Me.cbPremProxy.Location = New System.Drawing.Point(208, 196)
-        Me.cbPremProxy.Name = "cbPremProxy"
-        Me.cbPremProxy.Size = New System.Drawing.Size(98, 17)
-        Me.cbPremProxy.TabIndex = 6
-        Me.cbPremProxy.Text = "Premproxy.com"
-        Me.cbPremProxy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.cbPremProxy.UseVisualStyleBackColor = True
-        '
-        'cbFreeProxyList2
-        '
-        Me.cbFreeProxyList2.AutoSize = True
-        Me.cbFreeProxyList2.Location = New System.Drawing.Point(208, 81)
-        Me.cbFreeProxyList2.Name = "cbFreeProxyList2"
-        Me.cbFreeProxyList2.Size = New System.Drawing.Size(113, 17)
-        Me.cbFreeProxyList2.TabIndex = 7
-        Me.cbFreeProxyList2.Text = "Free-Proxy-List.net"
-        Me.cbFreeProxyList2.UseVisualStyleBackColor = True
-        '
-        'cbSpysru
-        '
-        Me.cbSpysru.AutoSize = True
-        Me.cbSpysru.Location = New System.Drawing.Point(208, 104)
-        Me.cbSpysru.Name = "cbSpysru"
-        Me.cbSpysru.Size = New System.Drawing.Size(61, 17)
-        Me.cbSpysru.TabIndex = 8
-        Me.cbSpysru.Text = "Spys.ru"
-        Me.cbSpysru.UseVisualStyleBackColor = True
-        '
-        'cbGatherProxy
-        '
-        Me.cbGatherProxy.AutoSize = True
-        Me.cbGatherProxy.Location = New System.Drawing.Point(208, 127)
-        Me.cbGatherProxy.Name = "cbGatherProxy"
-        Me.cbGatherProxy.Size = New System.Drawing.Size(107, 17)
-        Me.cbGatherProxy.TabIndex = 9
-        Me.cbGatherProxy.Text = "GatherProxy.com"
-        Me.cbGatherProxy.UseVisualStyleBackColor = True
-        '
-        'cbHTTPtunnel
-        '
-        Me.cbHTTPtunnel.AutoSize = True
-        Me.cbHTTPtunnel.Location = New System.Drawing.Point(208, 173)
-        Me.cbHTTPtunnel.Name = "cbHTTPtunnel"
-        Me.cbHTTPtunnel.Size = New System.Drawing.Size(99, 17)
-        Me.cbHTTPtunnel.TabIndex = 10
-        Me.cbHTTPtunnel.Text = "HTTPtunnel.ge"
-        Me.cbHTTPtunnel.UseVisualStyleBackColor = True
         '
         'Progress
         '
@@ -276,78 +223,96 @@ Partial Class Form2
         Me.lbCountProxys.TabIndex = 13
         Me.lbCountProxys.Text = "0"
         '
+        'BackgroundWorker1
+        '
+        '
         'cbSelect
         '
         Me.cbSelect.AutoSize = True
-        Me.cbSelect.Location = New System.Drawing.Point(208, 219)
+        Me.cbSelect.Location = New System.Drawing.Point(208, 150)
         Me.cbSelect.Name = "cbSelect"
         Me.cbSelect.Size = New System.Drawing.Size(70, 17)
         Me.cbSelect.TabIndex = 14
         Me.cbSelect.Text = "Select All"
         Me.cbSelect.UseVisualStyleBackColor = True
         '
-        'cbProxyNova
+        'cbPremProxy
         '
-        Me.cbProxyNova.AutoSize = True
-        Me.cbProxyNova.Location = New System.Drawing.Point(208, 150)
-        Me.cbProxyNova.Name = "cbProxyNova"
-        Me.cbProxyNova.Size = New System.Drawing.Size(101, 17)
-        Me.cbProxyNova.TabIndex = 15
-        Me.cbProxyNova.Text = "ProxyNova.com"
-        Me.cbProxyNova.UseVisualStyleBackColor = True
+        Me.cbPremProxy.AutoSize = True
+        Me.cbPremProxy.Location = New System.Drawing.Point(208, 127)
+        Me.cbPremProxy.Name = "cbPremProxy"
+        Me.cbPremProxy.Size = New System.Drawing.Size(98, 17)
+        Me.cbPremProxy.TabIndex = 6
+        Me.cbPremProxy.Text = "Premproxy.com"
+        Me.cbPremProxy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.cbPremProxy.UseVisualStyleBackColor = True
         '
-        'BackgroundWorker1
+        'cbHTTPtunnel
         '
+        Me.cbHTTPtunnel.AutoSize = True
+        Me.cbHTTPtunnel.Location = New System.Drawing.Point(208, 104)
+        Me.cbHTTPtunnel.Name = "cbHTTPtunnel"
+        Me.cbHTTPtunnel.Size = New System.Drawing.Size(99, 17)
+        Me.cbHTTPtunnel.TabIndex = 10
+        Me.cbHTTPtunnel.Text = "HTTPtunnel.ge"
+        Me.cbHTTPtunnel.UseVisualStyleBackColor = True
         '
-        'EditToolStripMenuItem
+        'cbHideMyName
         '
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyToolStripMenuItem, Me.RemoveToolStripMenuItem, Me.RemoveDownlinkToolStripMenuItem})
-        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.EditToolStripMenuItem.Text = "Edit"
+        Me.cbHideMyName.AutoSize = True
+        Me.cbHideMyName.Location = New System.Drawing.Point(208, 12)
+        Me.cbHideMyName.Name = "cbHideMyName"
+        Me.cbHideMyName.Size = New System.Drawing.Size(93, 17)
+        Me.cbHideMyName.TabIndex = 4
+        Me.cbHideMyName.Text = "HideMy.Name"
+        Me.cbHideMyName.UseVisualStyleBackColor = True
         '
-        'ToolStripMenuItem3
+        'cbSpysru
         '
-        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(149, 6)
+        Me.cbSpysru.AutoSize = True
+        Me.cbSpysru.Location = New System.Drawing.Point(208, 81)
+        Me.cbSpysru.Name = "cbSpysru"
+        Me.cbSpysru.Size = New System.Drawing.Size(61, 17)
+        Me.cbSpysru.TabIndex = 8
+        Me.cbSpysru.Text = "Spys.ru"
+        Me.cbSpysru.UseVisualStyleBackColor = True
         '
-        'RemoveToolStripMenuItem
+        'cbFreeProxyList2
         '
-        Me.RemoveToolStripMenuItem.Name = "RemoveToolStripMenuItem"
-        Me.RemoveToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
-        Me.RemoveToolStripMenuItem.Text = "Remove"
+        Me.cbFreeProxyList2.AutoSize = True
+        Me.cbFreeProxyList2.Location = New System.Drawing.Point(208, 58)
+        Me.cbFreeProxyList2.Name = "cbFreeProxyList2"
+        Me.cbFreeProxyList2.Size = New System.Drawing.Size(113, 17)
+        Me.cbFreeProxyList2.TabIndex = 7
+        Me.cbFreeProxyList2.Text = "Free-Proxy-List.net"
+        Me.cbFreeProxyList2.UseVisualStyleBackColor = True
         '
-        'CopyToolStripMenuItem
+        'cbNNTIME
         '
-        Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
-        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
-        Me.CopyToolStripMenuItem.Text = "Copy"
-        '
-        'RemoveDownlinkToolStripMenuItem
-        '
-        Me.RemoveDownlinkToolStripMenuItem.Name = "RemoveDownlinkToolStripMenuItem"
-        Me.RemoveDownlinkToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
-        Me.RemoveDownlinkToolStripMenuItem.Text = "Remove Downlink"
+        Me.cbNNTIME.AutoSize = True
+        Me.cbNNTIME.Location = New System.Drawing.Point(208, 35)
+        Me.cbNNTIME.Name = "cbNNTIME"
+        Me.cbNNTIME.Size = New System.Drawing.Size(88, 17)
+        Me.cbNNTIME.TabIndex = 5
+        Me.cbNNTIME.Text = "NNTime.com"
+        Me.cbNNTIME.UseVisualStyleBackColor = True
         '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(327, 342)
-        Me.Controls.Add(Me.cbProxyNova)
         Me.Controls.Add(Me.cbSelect)
         Me.Controls.Add(Me.lbCountProxys)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Progress)
         Me.Controls.Add(Me.cbHTTPtunnel)
-        Me.Controls.Add(Me.cbGatherProxy)
         Me.Controls.Add(Me.cbSpysru)
         Me.Controls.Add(Me.cbFreeProxyList2)
         Me.Controls.Add(Me.cbPremProxy)
         Me.Controls.Add(Me.cbNNTIME)
         Me.Controls.Add(Me.cbHideMyName)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.cbHideMyAss)
         Me.Controls.Add(Me.WebBrowser1)
         Me.Controls.Add(Me.ListView1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -366,20 +331,10 @@ Partial Class Form2
     Friend WithEvents ListView1 As ListView
     Friend WithEvents pxColumn As ColumnHeader
     Friend WithEvents WebBrowser1 As WebBrowser
-    Friend WithEvents cbHideMyAss As CheckBox
     Friend WithEvents Button1 As Button
-    Friend WithEvents cbHideMyName As CheckBox
-    Friend WithEvents cbNNTIME As CheckBox
-    Friend WithEvents cbPremProxy As CheckBox
-    Friend WithEvents cbFreeProxyList2 As CheckBox
-    Friend WithEvents cbSpysru As CheckBox
-    Friend WithEvents cbGatherProxy As CheckBox
-    Friend WithEvents cbHTTPtunnel As CheckBox
     Friend WithEvents Progress As ProgressBar
     Friend WithEvents Label1 As Label
     Friend WithEvents lbCountProxys As Label
-    Friend WithEvents cbSelect As CheckBox
-    Friend WithEvents cbProxyNova As CheckBox
     Friend WithEvents ContextMenuList As ContextMenuStrip
     Friend WithEvents CheckUplinkToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CheckAllToolStripMenuItem As ToolStripMenuItem
@@ -398,4 +353,11 @@ Partial Class Form2
     Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
     Friend WithEvents CopyToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RemoveDownlinkToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents cbSelect As CheckBox
+    Friend WithEvents cbPremProxy As CheckBox
+    Friend WithEvents cbHTTPtunnel As CheckBox
+    Friend WithEvents cbHideMyName As CheckBox
+    Friend WithEvents cbSpysru As CheckBox
+    Friend WithEvents cbFreeProxyList2 As CheckBox
+    Friend WithEvents cbNNTIME As CheckBox
 End Class
