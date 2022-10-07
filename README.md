@@ -1,7 +1,7 @@
 <div align="center">
   <h3 style="font-size: xx-large;"> NextProxy </h3>
   <hr>
-  <p>Free Proxy Configurator for Windows in VB.NET</p>
+  <p>Simple free proxy manager & free proxy lists for Windows</p>
   <hr>
 </div>
 
@@ -17,6 +17,10 @@
 [![GitHub Releases (by Release)](https://img.shields.io/github/downloads/danielcshn/nextproxy/1.0.0.7/total?style=for-the-badge)](https://github.com/danielcshn/nextproxy/releases/tag/1.0.0.7)
 
 </div>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/danielcshn/nextproxy/master/image/nextproxy.png" title="nextproxy">
+</p>
 
 ## ✅ Support
 
